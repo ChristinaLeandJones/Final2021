@@ -1,5 +1,5 @@
 ---
-title: "Covid19 vaccine study Final2021"
+title: "Covid007 vaccine study Final 2021"
 author: "Chrstina Jones "
 date: "Fall 2021"
 output:
@@ -33,9 +33,11 @@ Druguser = filter(FinalData, DrugUser =="yes")
 
 # Introduction
 
-A new  preventative vaccine (covid007) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups consisting of Males, Females, just the drug users, and just those in the LGBTQ community. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Part of the information you need to compute is the so-called effectiveness of the drug for each subgroup of people. Include a 95% confidence interval of the effectiveness for each different subgroup. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
+A new  preventative vaccine (covid007) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of sub populations tracked. Consider population subgroups consisting of Males, Females, just the drug users, and just those in the LGBTQ community. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Part of the information you need to compute is the so-called effectiveness of the drug for each subgroup of people. Include a 95% confidence interval of the effectiveness for each different subgroup. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbiage when referencing p-values in conclusions.
 
 # Males
+
+## Barplot
 
 ```{r}
 TheData <- guy %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
@@ -53,8 +55,16 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
 
-The plot represents the population of males (guy) and thwe relationship to hte contradtion of Covid19 by either taking the vaccine or the placebo.   
+The plot represents the population of males (guy) and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
+The plot above shows that approximately 58% of the males that took the vaccine did contract Covid007, while approximately 42% of the males that took the placebo. The information above shows the males that took the vaccine got Covid007 more then the the males that took the placebo 
 
+## Numerical Results 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=guy)
+rowPerc(table1)
+colPerc(table1)
+```
 
 
 
