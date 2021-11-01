@@ -1,12 +1,12 @@
 ---
-title: "Covid19 vaccine study Fall2021"
-author: "Put your name here!"
-date: "`r Sys.Date()`"
-output: 
-  html_document:
-    toc: true
-    toc_depth: 5
-
+title: "Covid19 vaccine study Final2021"
+author: "Chrstina Jones "
+date: "Fall 2021"
+output:
+   html_document:
+         toc: true
+         toc_depth: 5
+        
 ---
 
 ```{r include=FALSE,echo=FALSE}
@@ -15,15 +15,54 @@ require(tigerstats)
 require(forcats)
 TheData <-read.csv(file="fall21.csv",header=TRUE)
 TheData <- TheData %>% mutate(across(where(is.character),as.factor))
+#recode to remove the annoying "X" from the dataframe
+FinalData <- TheData %>% mutate(infected = recode(infected, aids = "covid", none = "OK" )) %>% select(-one_of("X"))
+FinalData <- FinalData %>%
+mutate(across(where(is.character), as.factor))
+FinalData$treatment <- relevel(FinalData$treatment,ref="placebo")
+#FinalData$infected <- relevel(FinalData$infected,ref="OK")
+guy = filter(FinalData, sex =="guy")
+gal = filter(FinalData, sex =="gal")
+gay = filter(FinalData, LGBTQ =="gay")
+Druguser = filter(FinalData, DrugUser =="yes")
 ```
+
+
+
+
 
 # Introduction
 
-A new  preventative vaccine (covid91) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups consisting of Males, Females, just the drug users, and just those in the LGBTQ community. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Part of the information you need to compute is the so-called effectiveness of the drug for each subgroup of people. Include a 95% confidence interval of the effectiveness for each different subgroup. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
+A new  preventative vaccine (covid007) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups consisting of Males, Females, just the drug users, and just those in the LGBTQ community. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Part of the information you need to compute is the so-called effectiveness of the drug for each subgroup of people. Include a 95% confidence interval of the effectiveness for each different subgroup. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
 # Males
 
+```{r}
+TheData <- guy %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(TheData,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(TheData,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+
+The plot represents the population of males (guy) and thwe relationship to hte contradtion of Covid19 by either taking the vaccine or the placebo.   
+
+
+
+
+
+
 # Females
+
+
 
 # Drug Users
 
