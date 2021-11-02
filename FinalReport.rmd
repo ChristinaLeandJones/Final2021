@@ -1,5 +1,5 @@
 ---
-title: "Covid007 vaccine study Final 2021"
+title: "Covid007 Vaccine Study Final 2021"
 author: "Chrstina Jones "
 date: "Fall 2021"
 output:
@@ -37,6 +37,9 @@ A new  preventative vaccine (covid007) is under test in clinical trials. Given t
 
 # Males
 
+$H_O$ Males taking the vaccine will have no effect on where they will contract Covid007. 
+$H_A$ Males taking the vaccine will help prevent Covid007. 
+
 ## Barplot
 
 ```{r}
@@ -57,6 +60,8 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 The plot represents the population of males (guy) and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
 The plot above shows that approximately 58% of the males that took the vaccine did contract Covid007, while approximately 42% of the males that took the placebo. The information above shows the males that took the vaccine got Covid007 more then the the males that took the placebo 
+The males were that took the vaccine were 1 1/2 times more like to contract Covid007. than those to that took the placebo.
+
 
 ## Numerical Results 
 
@@ -66,7 +71,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-
+The Numerical data results show the precis numbers for males(guy) that contracted Covid007 with or without the vaccine. The males that took the vaccine, 58.16% of them contracted Covid007, while 48.54 did not contracted Covid007. 
 
 
 
