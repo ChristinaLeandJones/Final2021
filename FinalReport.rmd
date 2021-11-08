@@ -63,6 +63,7 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 The plot represents the population of males(guy) and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
 The plot above shows that approximately 58% of the males that took the vaccine did contract Covid007, while approximately 42% of the males that took the placebo. The information above shows the males that took the vaccine got Covid007 more then the the males that took the placebo 
 The males that took the vaccine were 1 1/2 times more like to contract Covid007. than those to that took the placebo.
+This graphical analysis shows that vaccine does not work for males. 
 
 
 ## Numerical Results 
@@ -133,7 +134,7 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
 The plot represents the population of females (gal) and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
-The plot above shows that approximately 33% of the females that took the vaccine did contract Covid007, while approximately 68% of the males that took the placebo contracted Covid007. The information above shows the females that took the vaccine got Covid007 less then the the females that took the placebo. 
+The plot above shows that approximately 33% of the females that took the vaccine did contract Covid007, while approximately 68% of the females that took the placebo contracted Covid007. The information above shows the females that took the vaccine got Covid007 less then the the females that took the placebo. 
 The females that took the vaccine were less likely to contract Covid007 than those to that took the placebo.
 This graphical analysis show that the vaccine did work. 
 
@@ -175,11 +176,140 @@ options(digits=2)
 
 The effectiveness of the vaccine for gals with confidence interval of 63.15 to 70.99 which concludes that the vaccine is effective for females. We reject the Null Hypnosis because the females that did take the vaccine did have an effect which was they were less likely to contract Covid007. 
 
-
-
 # Drug Users
 
+$H_O$ Drug users taking the vaccine will have no effect on whether they will contract Covid007. 
+
+
+$H_A$ Drug users taking the vaccine will help prevent Covid007. 
+
+## Barplot
+
+
+```{r}
+TheData <- Druguser %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(TheData,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(TheData,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+The plot represents the population of drug users and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
+The plot above shows that approximately 33% of the drug users that took the vaccine did contract Covid007, while approximately 68% of the drug users that took the placebo contracted Covid007. The information above shows the drug users that took the vaccine got Covid007 less then the the drug users that took the placebo. 
+The drug users that took the vaccine were less likely to contract Covid007 than those to that took the placebo.
+This graphical analysis show that the vaccine did work. 
+
+## Numerical
+
+
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=Druguser)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The Numerical data results show the precise numbers for drug users that contracted Covid007 with or without the vaccine. The drug users that took the vaccine, 33% of them contracted Covid007, while 50% did not contracted Covid007. 
+
+
+## Inferential 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+druguserfish <- fisher.test(table1)
+druguserfish
+```
+
+```{r}
+effect <- druguserfish$p.value/(druguserfish$p.value +1)
+effectivenessdruguser = druguserfish$estimate/(druguserfish$estimate +1)*100
+print(effectivenessdruguser)
+```
+
+## Effectiveness for druguser is `r round(effectivenessdruguser,0)`
+
+```{r}
+low=(druguserfish$conf.int[1]/(druguserfish$conf.int[1] +1))*100
+hi=(druguserfish$conf.int[2]/(druguserfish$conf.int[2] +1))*100
+options(digits=2)
+```
+
+## Effectiveness Confidence Interval `r low`  to `r hi`
+
+The effectiveness of the vaccine for drug users with confidence interval of 54.96 to 73.63 which concludes that the vaccine is effective for drug users. We reject the Null Hypnosis because the drug users that did take the vaccine did have an effect which was they were less likely to contract Covid007. 
+
 # LGBTQ
+
+$H_O$ LGBTQ taking the vaccine will have no effect on whether they will contract Covid007. 
+
+$H_A$ LGBTQ taking the vaccine will help prevent Covid007. 
+
+## Barplot
+
+
+```{r}
+TheData <- gay %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(TheData,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(TheData,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+The plot represents the population of LGBTQ and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
+The plot above shows that approximately 71% of the LGBTQ that took the vaccine did contract Covid007, while approximately 29% of the LGBTQ that took the placebo. The information above shows the LGBTQ that took the vaccine got Covid007 more then the the LGBTQ that took the placebo 
+The LGBTQ that took the vaccine were more like to contract Covid007 than those to that took the placebo.
+This graphical analysis shows that vaccine does not work for LGBTQ
+
+## Numerical
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=gay)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The Numerical data results show the precise numbers for LGBTQ that contracted Covid007 with or without the vaccine. The LGBTQ that took the vaccine, 71% of them contracted Covid007, while 29% did not contracted Covid007. 
+
+## Inferential 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+gayfish <- fisher.test(table1)
+gayfish
+```
+
+```{r}
+effect <- gayfish$p.value/(gayfish$p.value +1)
+effectivenessgay = gayfish$estimate/(gayfish$estimate +1)*100
+print(effectivenessgay)
+```
+
+## Effectiveness for gay is `r round(effectivenessgay,0)`
+
+```{r}
+low=(gayfish$conf.int[1]/(gayfish$conf.int[1] +1))*100
+hi=(gayfish$conf.int[2]/(gayfish$conf.int[2] +1))*100
+options(digits=2)
+```
+
+## Effectiveness Confidence Interval `r low`  to `r hi`
+
 
 # Conclusions and recommendations
 
