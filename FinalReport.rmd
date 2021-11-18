@@ -62,7 +62,7 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 The plot represents the population of males(guy) and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
 The plot above shows that approximately 58% of the males that took the vaccine did contract Covid007, while approximately 42% of the males that took the placebo. The information above shows the males that took the vaccine got Covid007 more then the the males that took the placebo 
-The males that took the vaccine were 1 1/2 times more like to contract Covid007. than those to that took the placebo.
+The males that took the vaccine were 1 1/2 times more like to contract Covid007 than those to that took the placebo.
 This graphical analysis shows that vaccine does not work for males. 
 
 
@@ -105,7 +105,7 @@ options(digits=2)
 
 ## Effectiveness Confidence Interval `r low`  to `r hi`
 
-The effectiveness of the vaccine for guys with confidence interval of 35.09 to 45.94 concludes that the vaccine is not effect. We reject the Null Hypnosis because the males that did take the vaccine did have an effect which was they were more likely to contract Covid007. 
+The effectiveness of the vaccine for guys with confidence interval of 35.09 to 45.94 concludes that the vaccine ineffective. We reject the Null Hypnosis because the males that did take the vaccine did have an effect which was they were more likely to contract Covid007. 
 
 
 # Females
@@ -201,10 +201,7 @@ basicCC <- ggplot(TheData,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-The plot represents the population of drug users and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
-The plot above shows that approximately 33% of the drug users that took the vaccine did contract Covid007, while approximately 68% of the drug users that took the placebo contracted Covid007. The information above shows the drug users that took the vaccine got Covid007 less then the the drug users that took the placebo. 
-The drug users that took the vaccine were less likely to contract Covid007 than those to that took the placebo.
-This graphical analysis show that the vaccine did work. 
+The plot represents the population of drug users and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.The plot above shows that approximately 33% of the drug users that took the vaccine did contract Covid007, while approximately 68% of the drug users that took the placebo contracted Covid007. The information above shows the drug users that took the vaccine got Covid007 less then the the drug users that took the placebo.The drug users that took the vaccine were less likely to contract Covid007 than those to that took the placebo.This graphical analysis show that the vaccine did work. 
 
 ## Numerical
 
@@ -272,8 +269,7 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 The plot represents the population of LGBTQ and the relationship to the contraction of Covid007 by either taking the vaccine or the placebo.
 The plot above shows that approximately 71% of the LGBTQ that took the vaccine did contract Covid007, while approximately 29% of the LGBTQ that took the placebo. The information above shows the LGBTQ that took the vaccine got Covid007 more then the the LGBTQ that took the placebo 
-The LGBTQ that took the vaccine were more like to contract Covid007 than those to that took the placebo.
-This graphical analysis shows that vaccine does not work for LGBTQ
+The LGBTQ that took the vaccine were more like to contract Covid007 than those to that took the placebo. This graphical analysis shows that vaccine does not work for LGBTQ
 
 ## Numerical
 
@@ -310,6 +306,10 @@ options(digits=2)
 
 ## Effectiveness Confidence Interval `r low`  to `r hi`
 
+The effectiveness of the vaccine for LGBTQ with confidence interval of 20.51 to 37.97 which concludes that the vaccine is ineffective for LGBTQ. We reject the Null Hypnosis because the LGBTQ that did take the vaccine did have an effect which was they were more likely to contract Covid007. 
+
+
 
 # Conclusions and recommendations
+In conclusion, the vaccine for the GUY and LGBTQ are at a higher risk for contracting Covid007. These sub populations were highly more likely to contract the virus if they were administered the vaccine. While Drug users and Gals that were administered the vaccine were less likely to contract the virus. Recommendations are as follows: LGBTQ should NOT take the vaccine. Males should NOT take the vaccine. Females should take the vaccine. Drug users should take the vaccine. The highest risk population in these groups are LGBTQ. 
 
